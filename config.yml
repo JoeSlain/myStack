@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Update Cache
+      apt:
+        update_cache: true
+      tags:
+        - node
+        - zsh
+        - fzf
+  tasks:
+    - name: Node tasks
+      include_tasks: tasks/node.yml
+      tags:
+        - node
+
+    - name: ZSH tasks
+      include_tasks: tasks/zsh.yml
+      tags:
+        - zsh
+      
+    - name: fzf
+      include_tasks: tasks/fzf.yml
+      tags:
+        - fzf
