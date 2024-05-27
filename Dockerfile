@@ -1,6 +1,8 @@
 FROM ubuntu:focal AS base
+
 WORKDIR /usr/local/bin
 ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y software-properties-common curl git build-essential && \
@@ -11,3 +13,6 @@ RUN apt-get update && \
     apt-get autoremove --yes
 
 COPY . .
+
+# Add a command to keep the container running with a shell
+CMD ["/bin/bash"]

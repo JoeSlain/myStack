@@ -15,3 +15,19 @@
   shell: n latest
   tags:
     - node
+- name: Install yarn
+  npm:
+    name: yarn
+    global: true
+  tags:
+    - node
+- name: Install pnpm
+  npm:
+    name: pnpm
+    global: true
+  tags:
+    - node
+- name: Install ni
+  npm:
+    name: "@antfu/ni"
+    global: true

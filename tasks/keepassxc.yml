@@ -1,0 +1,8 @@
+
+- name: Add specified repository into sources list
+  ansible.builtin.apt_repository:
+    repo: ppa:phoerious/keepassxc
+    state: present
+
+
+sudo apt install keepassxc 
