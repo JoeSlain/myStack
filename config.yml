@@ -8,19 +8,22 @@
       tags:
         - node
         - zsh
-        - fzf
+        - chezmoi
+        - firefox
   tasks:
-    - name: Node tasks
-      include_tasks: tasks/node.yml
-      tags:
-        - node
-
-    - name: ZSH tasks
-      include_tasks: tasks/zsh.yml
-      tags:
-        - zsh
-      
-    - name: fzf
-      include_tasks: tasks/fzf.yml
-      tags:
-        - fzf
+   - name: Node tasks
+     include_tasks: tasks/node.yml
+     tags:
+       - node
+   - name: ZSH tasks
+     include_tasks: tasks/zsh.yml
+     tags:
+       - zsh
+   - name: chezmoi
+     include_tasks: tasks/chezmoi.yml
+     tags:
+        - chezmoi
+   - name: firefox
+     include_tasks: tasks/firefox.yml
+     tags:
+        - firefox

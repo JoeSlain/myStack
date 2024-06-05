@@ -1,0 +1,57 @@
+---
+- name: Download and install Tomb from the specified URL
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Install necessary packages
+      apt:
+        name:
+          - curl
+          - wget
+          - python3-bs4
+          - build-essential  # Ensure build tools are present
+        state: present
+
+    - name: Fetch the webpage content
+      uri:
+        url: https://files.dyne.org/tomb/
+        return_content: yes
+      register: webpage_content
+
+    - name: Extract the .tar.gz file name from the webpage
+      set_fact:
+        tarball_name: "{{ (webpage_content.content | regex_findall('tomb-[0-9.]+\\.tar\\.gz'))[0] | default(None) }}"
+
+    - name: Ensure the tarball name is found
+      fail:
+        msg: "No .tar.gz file found in the webpage content"
+      when: tarball_name is None
+
+    - name: Download the .tar.gz file
+      get_url:
+        url: "https://files.dyne.org/tomb/{{ tarball_name }}"
+        dest: "/tmp/{{ tarball_name }}"
+
+    - name: Create directory for extracting the tarball
+      file:
+        path: /opt/tomb
+        state: directory
+
+    - name: Extract the tarball
+      unarchive:
+        src: "/tmp/{{ tarball_name }}"
+        dest: /opt/tomb
+        remote_src: yes
+
+    - name: Install Tomb
+      shell: |
+        cd /opt/tomb/tomb-*
+        make
+        make install
+      args:
+        executable: /bin/bash
+
+    - name: Clean up
+      file:
+        path: "/tmp/{{ tarball_name }}"
+        state: absent

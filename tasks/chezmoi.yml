@@ -1,0 +1,22 @@
+---
+- name: Install curl
+  apt:
+    name: curl
+    state: present
+  tags:
+    - chezmoi
+
+- name: Install chezmoi
+  shell: "sh -c \"$(curl -fsLS get.chezmoi.io)\" -- -b /usr/local/bin"
+  args:
+    executable: /bin/bash
+  tags:
+    - chezmoi
+
+- name: Init chezmoi
+  shell: "chezmoi init --apply joeslain"
+  args:
+    executable: /bin/bash
+  tags:
+    - chezmoi
+
