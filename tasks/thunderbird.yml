@@ -1,0 +1,7 @@
+---
+- name: Install Thunderbird
+  apt:
+    name: thunderbird
+    state: present
+  tags:
+    - thunderbird
