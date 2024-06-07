@@ -10,20 +10,37 @@
         - zsh
         - chezmoi
         - firefox
+        - thunderbird
+
+
   tasks:
-   - name: Node tasks
-     include_tasks: tasks/node.yml
-     tags:
-       - node
-   - name: ZSH tasks
-     include_tasks: tasks/zsh.yml
-     tags:
-       - zsh
-   - name: chezmoi
-     include_tasks: tasks/chezmoi.yml
-     tags:
-        - chezmoi
-   - name: firefox
-     include_tasks: tasks/firefox.yml
-     tags:
-        - firefox
+    # Uncomment these lines if you have node and zsh tasks
+    # - name: Node tasks
+    #   include_tasks: tasks/node.yml
+    #   tags:
+    #     - node
+
+    # - name: ZSH tasks
+    #   include_tasks: tasks/zsh.yml
+    #   tags:
+    #     - zsh
+
+   # - name: Install chezmoi tasks
+   #   include_tasks: tasks/chezmoi.yml
+   #   tags:
+   #     - chezmoi
+#
+   # - name: Install Firefox tasks
+   #   include_tasks: tasks/firefox.yml
+   #   tags:
+   #     - firefox
+
+    #- name: Install Thunderbird tasks
+    #  include_tasks: tasks/thunderbird.yml
+    #  tags:
+    #    - thunderbird
+
+    - name: Install Zoxide tasks
+      include_tasks: tasks/zoxide.yml
+      tags:
+        - zoxide
