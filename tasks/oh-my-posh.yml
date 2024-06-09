@@ -1,0 +1,19 @@
+---
+- name: Install wget
+  apt:
+    name: wget
+    state: present
+  tags:
+    - zsh
+
+- name: Install oh-my-posh
+  shell: wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+
+  tags:
+    - zsh
+
+- name: Chmod oh-my-posh
+  shell:  chmod +x /usr/local/bin/oh-my-posh
+
+  tags:
+    - zsh

@@ -1,0 +1,12 @@
+---
+- name: Install snap
+  apt:
+    name: snap
+    state: present
+  tags:
+    - espanso
+
+- name: Install espanso
+  community.general.snap:
+    name:
+      - espanso

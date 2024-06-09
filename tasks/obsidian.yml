@@ -4,9 +4,10 @@
     name: snap
     state: present
   tags:
-    - keepassxc
+    - obsidian
 
-- name: Install keepassxc
+- name: Install obsidian
   community.general.snap:
+    classic: true
     name:
-      - keepassxc
+      - obsidian

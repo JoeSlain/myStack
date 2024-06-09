@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   become: true
+  ignore_errors: true
   pre_tasks:
     - name: Update Cache
       apt:
@@ -11,6 +12,10 @@
         - chezmoi
         - firefox
         - thunderbird
+        - zoxide
+        - espanso
+        - keepassxc
+        - obsidian
 
 
   tasks:
@@ -24,11 +29,15 @@
     #   include_tasks: tasks/zsh.yml
     #   tags:
     #     - zsh
-
-   # - name: Install chezmoi tasks
-   #   include_tasks: tasks/chezmoi.yml
-   #   tags:
-   #     - chezmoi
+#
+    # - name: Install Oh-my-posh tasks
+    #   include_tasks: tasks/oh-my-posh.yml
+    #   tags:
+    #    - zsh
+    # - name: Install chezmoi tasks
+    #   include_tasks: tasks/chezmoi.yml
+    #   tags:
+    #    - chezmoi
 #
    # - name: Install Firefox tasks
    #   include_tasks: tasks/firefox.yml
@@ -40,7 +49,19 @@
     #  tags:
     #    - thunderbird
 
-    - name: Install Zoxide tasks
-      include_tasks: tasks/zoxide.yml
+    #- name: Install Zoxide tasks
+    #  include_tasks: tasks/zoxide.yml
+    #  tags:
+    #    - zoxide
+    - name: Install Espanso tasks
+      include_tasks: tasks/espanso.yml
       tags:
-        - zoxide
+        - espanso
+    - name: Install Keepassxc tasks
+      include_tasks: tasks/keepassxc.yml
+      tags:
+        - keepassxc.yml
+    - name: Install Obsidian tasks
+      include_tasks: tasks/obsidian.yml
+      tags:
+        - obsidian
